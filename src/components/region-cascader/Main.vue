@@ -8,15 +8,16 @@
     }"
     :value="values"
     placeholder="Please select"
+    popupClassName="vxe-table--ignore-clear"
     @change="handleChanged"
   />
 </template>
 
 <script>
-import { Cascader } from "ant-design-vue";
-import { defineComponent, ref, watch } from "@vue/composition-api";
+import { Cascader } from 'ant-design-vue';
+import { defineComponent, ref, watch } from '@vue/composition-api';
 
-import Regions from "./regions.json";
+import Regions from './regions.json';
 
 const getRegionValues = (labelString, splitter) => {
   if (!labelString) return [];
@@ -56,13 +57,13 @@ const getRegionLabel = (values, splitter) => {
 };
 
 export default defineComponent({
-  name: "RegionCascader",
+  name: 'RegionCascader',
   components: { Cascader },
   model: {
-    prop: "value",
-    event: "input",
+    prop: 'value',
+    event: 'change',
   },
-  emits: ["input", "change", "blur"],
+  emits: ['change'],
   props: {
     value: {
       type: String,
@@ -70,11 +71,11 @@ export default defineComponent({
     },
     splitter: {
       type: String,
-      default: "/",
+      default: '/',
     },
   },
   setup(props, context) {
-    const valuesRef = ref("");
+    const valuesRef = ref('');
 
     watch(
       [() => props.value, () => props.splitter],
@@ -85,11 +86,9 @@ export default defineComponent({
     );
 
     const handleChanged = (e) => {
-      debugger;
       const selectValue = getRegionLabel(e, props.splitter);
 
-      context.emit("input", selectValue);
-      context.emit("change", { value: selectValue, $event: e });
+      context.emit('change', selectValue);
     };
 
     return {
