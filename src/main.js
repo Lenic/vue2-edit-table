@@ -10,6 +10,8 @@ import { StaticSelect } from './components/static-select';
 import 'vxe-table/lib/style.css';
 import 'ant-design-vue/dist/antd.css';
 
+import './styles/index.css';
+
 // 必须在第一个注册
 Vue.use(CompositionApi);
 
@@ -25,6 +27,7 @@ VXETable.renderer.add('region', {
 
     return [
       h(Region, {
+        class: 'w-full',
         props: { ...props, value: row[column.property] },
         on: {
           change: (v) => {
@@ -48,6 +51,7 @@ VXETable.renderer.add('static-select', {
 
     return [
       h(StaticSelect, {
+        class: 'w-full',
         props: { ...props, value: row[column.property] },
         on: {
           change: (v) => {
