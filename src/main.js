@@ -46,7 +46,6 @@ VXETable.renderer.add('static-select', {
     let { row, column } = params;
     let { props } = renderOpts;
 
-    debugger;
     return [
       h(StaticSelect, {
         props: { ...props, value: row[column.property] },
