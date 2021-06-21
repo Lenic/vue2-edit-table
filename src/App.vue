@@ -69,8 +69,21 @@
       <vxe-table-column field="address" title="Address" :edit-render="{ name: 'textarea' }"></vxe-table-column>
       <vxe-table-column title="操作" width="160">
         <template #default="{ row }">
-          <span v-if="row.$meta.loading">Loading...</span>
-          <button v-if="row.$meta.saveError" @click="handleUpdateRow(row)">Save</button>
+          <div class="space-x-12">
+            <span
+              v-if="row.$meta.loading"
+              class="bg-warning bg-opacity-30 text-left px-10 py-4 rounded inline-block hover:bg-opacity-70 select-none"
+            >
+              Saving...
+            </span>
+            <div
+              v-if="row.$meta.saveError"
+              @click="handleUpdateRow(row)"
+              class="bg-danger bg-opacity-30 px-10 py-4 rounded hover:bg-opacity-70 cursor-pointer inline-block"
+            >
+              Save
+            </div>
+          </div>
         </template>
       </vxe-table-column>
     </vxe-table>
