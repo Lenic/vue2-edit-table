@@ -4,6 +4,7 @@ import VXETable from 'vxe-table';
 import CompositionApi from '@vue/composition-api';
 
 import App from './App.vue';
+import { Input } from 'ant-design-vue';
 import { Region } from './components/region-cascader';
 import { StaticSelect } from './components/static-select';
 
@@ -64,6 +65,30 @@ VXETable.renderer.add('static-select', {
   },
   renderCell(h, renderOpts, { row, column }) {
     return [h('span', { class: 'abc' }, row[column.property])];
+  },
+});
+
+VXETable.renderer.add('static-input', {
+  // 默认显示模板
+  renderEdit(h, renderOpts, params) {
+    let { row, column } = params;
+    let { props } = renderOpts;
+
+    return [
+      h(Input, {
+        class: 'w-full',
+        props: { ...props, value: row[column.property] },
+        on: {
+          change: (v) => {
+            console.log('input.changed', v);
+            row[column.property] = v;
+          },
+        },
+      }),
+    ];
+  },
+  renderCell(h, renderOpts, { row, column }) {
+    return [h('span', { class: 'text-warning text-opacity-70' }, row[column.property])];
   },
 });
 

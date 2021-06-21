@@ -16,11 +16,7 @@
       }"
     >
       <vxe-table-column v-if="1 === 2" type="seq" width="60"></vxe-table-column>
-      <vxe-table-column
-        field="name"
-        title="Name"
-        :edit-render="{ name: 'input', attrs: { type: 'text' } }"
-      ></vxe-table-column>
+      <vxe-table-column field="name" title="Name" :edit-render="{ name: 'static-input' }"></vxe-table-column>
       <vxe-table-column
         field="role"
         title="Role"
