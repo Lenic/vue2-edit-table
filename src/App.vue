@@ -25,8 +25,8 @@
         field="role"
         title="Role"
         :edit-render="{
-          name: 'input',
-          attrs: { type: 'text', placeholder: '请输入昵称' },
+          name: 'static-select',
+          props: { options: roleList },
         }"
       ></vxe-table-column>
       <vxe-table-column field="sex" title="Sex" :edit-render="{ name: '$select', options: sexList }"></vxe-table-column>
@@ -78,6 +78,13 @@
 </template>
 
 <script>
+const roleList = [
+  { label: 'Develop', value: '1' },
+  { label: 'Designer', value: '2' },
+  { label: 'Tester', value: '3' },
+  { label: 'PM', value: '4' },
+];
+
 export default {
   data() {
     return {
@@ -117,7 +124,7 @@ export default {
           id: 10003,
           name: 'Test3',
           nickname: 'T3',
-          role: 'Test',
+          role: 'Tester',
           sex: '0',
           sex2: ['1'],
           num1: 200,
@@ -209,6 +216,7 @@ export default {
         { label: '男', value: '1' },
         { label: '女', value: '0' },
       ],
+      roleList,
     };
   },
   methods: {

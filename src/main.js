@@ -5,6 +5,7 @@ import CompositionApi from '@vue/composition-api';
 
 import App from './App.vue';
 import { Region } from './components/region-cascader';
+import { StaticSelect } from './components/static-select';
 
 import 'vxe-table/lib/style.css';
 import 'ant-design-vue/dist/antd.css';
@@ -28,6 +29,30 @@ VXETable.renderer.add('region', {
         on: {
           change: (v) => {
             console.log('region.changed', v);
+            row[column.property] = v;
+          },
+        },
+      }),
+    ];
+  },
+  renderCell(h, renderOpts, { row, column }) {
+    return [h('span', { class: 'abc' }, row[column.property])];
+  },
+});
+
+VXETable.renderer.add('static-select', {
+  // 默认显示模板
+  renderEdit(h, renderOpts, params) {
+    let { row, column } = params;
+    let { props } = renderOpts;
+
+    debugger;
+    return [
+      h(StaticSelect, {
+        props: { ...props, value: row[column.property] },
+        on: {
+          change: (v) => {
+            console.log('select.changed', v);
             row[column.property] = v;
           },
         },
