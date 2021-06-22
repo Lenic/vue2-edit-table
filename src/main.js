@@ -55,7 +55,7 @@ VXETable.renderer.add('string-date-picker', {
 
     return [
       h(StringDatePicker, {
-        class: 'w-full',
+        class: 'w-full string-date-picker',
         props: { ...props, value: row[column.property] },
         on: {
           change: (v) => {

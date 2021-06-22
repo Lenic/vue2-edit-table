@@ -170,6 +170,49 @@
   }
 }
 
+.string-date-picker {
+  &.col--edit {
+    & > .vxe-cell {
+      width: auto !important;
+      margin-right: -1px;
+      @apply px-0;
+
+      & > .string-date-picker {
+        height: 49px;
+        margin: -1px -1px 0;
+        @apply border rounded-0 outline-none;
+
+        &:focus,
+        &:hover {
+          @apply border-primary;
+        }
+
+        .ant-calendar-picker-input {
+          height: 47px;
+          line-height: 47px;
+          @apply border-0 rounded-0 transition-none;
+
+          &:focus,
+          &:hover {
+            border-right-width: 0 !important;
+            @apply shadow-none outline-none;
+          }
+        }
+      }
+    }
+  }
+
+  &.vxe-table--ignore-clear {
+    & > .ant-calendar-picker-container-content {
+      @apply rounded-0;
+
+      & > .ant-calendar-panel > .ant-calendar-input-wrap {
+        @apply py-0 px-10 h-48 leading-48 text-main;
+      }
+    }
+  }
+}
+
 .static-input,
 .static-select,
 .region-cascader {
