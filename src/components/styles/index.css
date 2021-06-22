@@ -11,8 +11,8 @@
 }
 
 .vxe-table--render-default .vxe-body--x-space {
+  margin-bottom: 0 !important;
   background: var(--colors-border);
-  @apply mb-0;
 }
 
 .vxe-table--render-default.border--full .vxe-body--column {
