@@ -38,6 +38,11 @@ input.edit {
 }
 
 .vxe-table--render-default .vxe-body--x-space {
-  background: #e8eaec;
+  background: var(--colors-border);
   @apply mb-0;
+}
+
+.vxe-table--render-default.border--full .vxe-body--column {
+  background-image: linear-gradient(var(--colors-border), var(--colors-border)),
+    Linear-gradient(var(--colors-border), var(--colors-border));
 }
