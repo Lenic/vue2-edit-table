@@ -105,9 +105,9 @@ VXETable.renderer.add('static-input', {
         class: 'static-input',
         props: { ...props, value: row[column.property] },
         on: {
-          change: (v) => {
-            console.log('input.changed', v);
-            row[column.property] = v;
+          change: (e) => {
+            console.log('input.changed', e.target.value);
+            row[column.property] = e.target.value;
           },
         },
       }),
