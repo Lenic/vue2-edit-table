@@ -6,8 +6,8 @@
       show-overflow
       keep-source
       ref="xTable"
-      :loading="loading"
-      :data="tableData"
+      :loading="dataSource.loading"
+      :data="dataSource.tableData"
       @edit-closed="saveRowEvent"
       :edit-config="{
         trigger: 'click',
@@ -34,7 +34,7 @@
         :class-name="handleSelectCellClassName"
         :edit-render="{
           name: 'static-select',
-          props: { options: roleList },
+          props: { options: dataSource.roleList },
         }"
       />
       <vxe-table-column
@@ -51,13 +51,13 @@
         :class-name="handleDatePickerCellClassName"
         :edit-render="{ name: 'string-date-picker' }"
       />
-      <vxe-table-column field="sex" title="Sex" :edit-render="{ name: '$select', options: sexList }" />
+      <vxe-table-column field="sex" title="Sex" :edit-render="{ name: '$select', options: dataSource.sexList }" />
       <vxe-table-column
         field="sex2"
         title="多选下拉"
         :edit-render="{
           name: '$select',
-          options: sexList,
+          options: dataSource.sexList,
           props: { multiple: true },
         }"
       />
@@ -102,6 +102,8 @@
 </template>
 
 <script>
+import { defineComponent, reactive } from '@vue/composition-api';
+
 const roleList = [
   { label: 'Develop', value: '1' },
   { label: 'Designer', value: '2' },
@@ -109,123 +111,122 @@ const roleList = [
   { label: 'PM', value: '4' },
 ];
 
-export default {
-  data() {
-    return {
+const sexList = [
+  { label: '', value: '' },
+  { label: '男', value: '1' },
+  { label: '女', value: '0' },
+];
+
+const tableDataSource = [
+  {
+    id: 10001,
+    name: 'Test1',
+    nickname: 'T1',
+    role: 'Develop',
+    sex: '0',
+    sex2: ['0'],
+    num1: 40,
+    age: 28,
+    address: 'Shenzhen',
+    date12: '',
+    date13: '',
+    region: '河北省/石家庄市/藁城区',
+    failure: '1. 承运人不存在；\n2. 车辆不存在；\n3. 托运方信息不存在',
+    $meta: {
       loading: false,
-      tableData: [
-        {
-          id: 10001,
-          name: 'Test1',
-          nickname: 'T1',
-          role: 'Develop',
-          sex: '0',
-          sex2: ['0'],
-          num1: 40,
-          age: 28,
-          address: 'Shenzhen',
-          date12: '',
-          date13: '',
-          region: '河北省/石家庄市/藁城区',
-          failure: '1. 承运人不存在；\n2. 车辆不存在；\n3. 托运方信息不存在',
-          $meta: {
-            loading: false,
-            saveError: false,
-            hasError: true,
-            errors: { name: true, role: true, region: true, date12: true },
-          },
-        },
-        {
-          id: 10002,
-          name: 'Test2',
-          nickname: 'T2',
-          role: 'Designer',
-          sex: '1',
-          sex2: ['0', '1'],
-          num1: 44,
-          age: 22,
-          address: 'Guangzhou',
-          date12: '',
-          date13: '2020-08-20',
-          region: '北京市/北京市/朝阳区',
-          $meta: { loading: false, saveError: false, hasError: false },
-        },
-        {
-          id: 10005,
-          name: 'Test5',
-          nickname: 'T5',
-          role: 'Develop',
-          sex: '0',
-          sex2: ['1', '0'],
-          num1: 20,
-          age: 30,
-          address: 'Shanghai',
-          date12: '2020-09-20',
-          date13: '',
-          region: '香港特别行政区',
-          $meta: { loading: false, saveError: false, hasError: false },
-        },
-        {
-          id: 10006,
-          name: 'Test6',
-          nickname: 'T6',
-          role: 'Designer',
-          sex: '1',
-          sex2: ['0'],
-          num1: 10,
-          age: 21,
-          address: 'Shenzhen',
-          date12: '',
-          date13: '',
-          region: '浙江省/杭州市/西湖区',
-          $meta: { loading: false, saveError: false, hasError: false },
-        },
-        {
-          id: 10007,
-          name: 'Test7',
-          nickname: 'T7',
-          role: 'Develop',
-          sex: '0',
-          sex2: ['0'],
-          num1: 5,
-          age: 29,
-          address: 'Shenzhen',
-          date12: '2020-01-02',
-          date13: '2020-09-20',
-          region: '浙江省/杭州市/临安区',
-          $meta: { loading: false, saveError: false, hasError: false },
-        },
-        {
-          id: 10008,
-          name: 'Test8',
-          nickname: 'T8',
-          role: 'PM',
-          sex: '1',
-          sex2: ['0'],
-          num1: 2,
-          age: 35,
-          address: 'Shenzhen',
-          date12: '',
-          date13: '',
-          region: '河北省/石家庄市/无极县',
-          $meta: { loading: false, saveError: false, hasError: false },
-        },
-      ],
-      sexList: [
-        { label: '', value: '' },
-        { label: '男', value: '1' },
-        { label: '女', value: '0' },
-      ],
-      roleList,
-    };
-  },
-  methods: {
-    editRowEvent(row) {
-      const $table = this.$refs.xTable;
-      $table.setActiveRow(row);
+      saveError: false,
+      hasError: true,
+      errors: { name: true, role: true, region: true, date12: true },
     },
-    saveRowEvent({ row }) {
-      const $table = this.$refs.xTable;
+  },
+  {
+    id: 10002,
+    name: 'Test2',
+    nickname: 'T2',
+    role: 'Designer',
+    sex: '1',
+    sex2: ['0', '1'],
+    num1: 44,
+    age: 22,
+    address: 'Guangzhou',
+    date12: '',
+    date13: '2020-08-20',
+    region: '北京市/北京市/朝阳区',
+    $meta: { loading: false, saveError: false, hasError: false },
+  },
+  {
+    id: 10005,
+    name: 'Test5',
+    nickname: 'T5',
+    role: 'Develop',
+    sex: '0',
+    sex2: ['1', '0'],
+    num1: 20,
+    age: 30,
+    address: 'Shanghai',
+    date12: '2020-09-20',
+    date13: '',
+    region: '香港特别行政区',
+    $meta: { loading: false, saveError: false, hasError: false },
+  },
+  {
+    id: 10006,
+    name: 'Test6',
+    nickname: 'T6',
+    role: 'Designer',
+    sex: '1',
+    sex2: ['0'],
+    num1: 10,
+    age: 21,
+    address: 'Shenzhen',
+    date12: '',
+    date13: '',
+    region: '浙江省/杭州市/西湖区',
+    $meta: { loading: false, saveError: false, hasError: false },
+  },
+  {
+    id: 10007,
+    name: 'Test7',
+    nickname: 'T7',
+    role: 'Develop',
+    sex: '0',
+    sex2: ['0'],
+    num1: 5,
+    age: 29,
+    address: 'Shenzhen',
+    date12: '2020-01-02',
+    date13: '2020-09-20',
+    region: '浙江省/杭州市/临安区',
+    $meta: { loading: false, saveError: false, hasError: false },
+  },
+  {
+    id: 10008,
+    name: 'Test8',
+    nickname: 'T8',
+    role: 'PM',
+    sex: '1',
+    sex2: ['0'],
+    num1: 2,
+    age: 35,
+    address: 'Shenzhen',
+    date12: '',
+    date13: '',
+    region: '河北省/石家庄市/无极县',
+    $meta: { loading: false, saveError: false, hasError: false },
+  },
+];
+
+export default defineComponent({
+  setup(_, context) {
+    const dataSource = reactive({
+      loading: false,
+      tableData: tableDataSource,
+      sexList,
+      roleList,
+    });
+
+    const saveRowEvent = ({ row }) => {
+      const $table = context.refs.xTable;
       $table.clearActived().then(() => {
         // this.loading = true;
         row.$meta.loading = true;
@@ -240,8 +241,9 @@ export default {
           }
         }, 3000);
       });
-    },
-    handleUpdateRow(row) {
+    };
+
+    const handleUpdateRow = (row) => {
       row.$meta.saveError = false;
       row.$meta.loading = true;
       setTimeout(() => {
@@ -253,48 +255,60 @@ export default {
           console.error('数据提交失败！', row);
         }
       }, 3000);
-    },
-    cancelRowEvent(row) {
-      const $table = this.$refs.xTable;
-      $table.clearActived().then(() => {
-        // 还原行数据
-        $table.revertData(row);
-      });
-    },
-    activeRowMethod({ row }) {
+    };
+
+    const activeRowMethod = ({ row }) => {
       if (row.$meta.loading) {
         console.log('正在提交数据，不能更改！');
         return false;
       }
       return true;
-    },
-    handleErrorCellClassName({ row }) {
+    };
+
+    const handleErrorCellClassName = ({ row }) => {
       if (row.failure && row.$meta.hasError) {
         return 'bg-danger bg-opacity-10 text-danger error-info';
       }
 
       return 'text-danger error-info';
-    },
-    handleInputCellClassName({ row, column }) {
+    };
+
+    const handleInputCellClassName = ({ row, column }) => {
       const hasError = row.$meta.errors ? row.$meta.errors[column.property] : false;
 
       return hasError ? 'static-input error-rect' : 'static-input';
-    },
-    handleSelectCellClassName({ row, column }) {
+    };
+
+    const handleSelectCellClassName = ({ row, column }) => {
       const hasError = row.$meta.errors ? row.$meta.errors[column.property] : false;
 
       return hasError ? 'static-select error-rect' : 'static-select';
-    },
-    handleCascaderCellClassName({ row, column }) {
+    };
+
+    const handleCascaderCellClassName = ({ row, column }) => {
       const hasError = row.$meta.errors ? row.$meta.errors[column.property] : false;
 
       return hasError ? 'region-cascader error-rect' : 'region-cascader';
-    },
-    handleDatePickerCellClassName({ row, column }) {
+    };
+
+    const handleDatePickerCellClassName = ({ row, column }) => {
       const hasError = row.$meta.errors ? row.$meta.errors[column.property] : false;
 
       return hasError ? 'string-date-picker error-rect' : 'string-date-picker';
-    },
+    };
+
+    return {
+      dataSource,
+
+      saveRowEvent,
+      handleUpdateRow,
+      activeRowMethod,
+      handleErrorCellClassName,
+      handleInputCellClassName,
+      handleSelectCellClassName,
+      handleCascaderCellClassName,
+      handleDatePickerCellClassName,
+    };
   },
-};
+});
 </script>
