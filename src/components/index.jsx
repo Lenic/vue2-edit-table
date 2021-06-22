@@ -5,6 +5,8 @@ import { Region } from './region-cascader';
 import { StaticSelect } from './static-select';
 import { StringDatePicker } from './string-date-picker';
 
+import './styles/index.css';
+
 const defaultRenderCell = (h, _, { row, column }) => [<span class="text-main px-10">{row[column.property]}</span>];
 
 const defaultErrorRenderCell = (h, _, { row, column }) => {

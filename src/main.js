@@ -9,8 +9,6 @@ import { install } from './components';
 import 'vxe-table/lib/style.css';
 import 'ant-design-vue/dist/antd.css';
 
-import './styles/index.css';
-
 // 必须在第一个注册
 Vue.use(CompositionApi);
 
