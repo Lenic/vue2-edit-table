@@ -21,11 +21,11 @@ input.edit {
   margin-top: -1px;
   margin-left: -1px;
   margin-right: -1px;
-  @apply w-full leading-48 border-0 outline-none rounded-0 text-main px-10 border-primary border;
+  @apply w-full leading-48 border-0 outline-none rounded-0 text-main px-10 border;
 
   &:focus,
   &:hover {
-    @apply shadow-none;
+    @apply shadow-none border-primary;
   }
 }
 
