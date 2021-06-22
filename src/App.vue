@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-primary-light text-28 bg-opacity-10 p-36">
+  <div id="app" class="bg-primary-light text-28 bg-opacity-10 p-36 min-h-screen">
     <vxe-table
       border
       resizable
