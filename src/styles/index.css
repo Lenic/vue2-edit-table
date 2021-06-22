@@ -122,6 +122,7 @@
 
         &:focus,
         &:hover {
+          z-index: 10;
           @apply border-primary;
 
           & > .ant-cascader-input {
@@ -184,6 +185,7 @@
 
         &:focus,
         &:hover {
+          z-index: 10;
           @apply border-primary;
         }
 
