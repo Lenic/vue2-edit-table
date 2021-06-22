@@ -21,6 +21,10 @@ Vue.use(VXETable);
 
 Vue.config.productionTip = false;
 
+const defaultRenderCell = (h, renderOpts, { row, column }) => {
+  return [h('span', { class: 'text-main px-10' }, row[column.property])];
+};
+
 VXETable.renderer.add('region-cascader', {
   // 默认显示模板
   renderEdit(h, renderOpts, params) {
@@ -40,9 +44,7 @@ VXETable.renderer.add('region-cascader', {
       }),
     ];
   },
-  renderCell(h, renderOpts, { row, column }) {
-    return [h('span', { class: 'text-main px-10' }, row[column.property])];
-  },
+  renderCell: defaultRenderCell,
 });
 
 VXETable.renderer.add('string-date-picker', {
@@ -64,9 +66,7 @@ VXETable.renderer.add('string-date-picker', {
       }),
     ];
   },
-  renderCell(h, renderOpts, { row, column }) {
-    return [h('span', { class: 'text-main px-10' }, row[column.property])];
-  },
+  renderCell: defaultRenderCell,
 });
 
 VXETable.renderer.add('static-select', {
@@ -88,9 +88,7 @@ VXETable.renderer.add('static-select', {
       }),
     ];
   },
-  renderCell(h, renderOpts, { row, column }) {
-    return [h('span', { class: 'text-main px-10' }, row[column.property])];
-  },
+  renderCell: defaultRenderCell,
 });
 
 VXETable.renderer.add('static-input', {
@@ -113,9 +111,7 @@ VXETable.renderer.add('static-input', {
       }),
     ];
   },
-  renderCell(h, renderOpts, { row, column }) {
-    return [h('span', { class: 'text-main px-10' }, row[column.property])];
-  },
+  renderCell: defaultRenderCell,
 });
 
 VXETable.renderer.add('error-info', {
