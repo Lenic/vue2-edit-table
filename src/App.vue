@@ -25,7 +25,7 @@
       <vxe-table-column
         field="name"
         title="name"
-        class-name="p-content-none border-0!"
+        class-name="p-content-none"
         :edit-render="{ name: 'static-input' }"
       ></vxe-table-column>
       <vxe-table-column
