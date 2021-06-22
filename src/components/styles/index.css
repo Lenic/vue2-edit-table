@@ -24,70 +24,67 @@
   @apply truncate;
 }
 
-.static-input {
-  &.col--edit {
-    & > .vxe-cell {
-      @apply p-0;
-      margin-right: -1px;
-      width: auto !important;
+.static-input,
+.static-select,
+.region-cascader,
+.string-date-picker {
+  &.col--edit > .vxe-cell {
+    @apply p-0;
+    margin-right: -1px;
+    width: auto !important;
+  }
+}
 
-      & > .static-input {
-        height: 49px;
-        margin-top: -1px;
-        margin-left: -1px;
-        margin-right: -1px;
-        @apply w-full leading-48 border-0 outline-none rounded-0 text-main px-10 border;
+.static-input.col--edit > .vxe-cell {
+  & > .static-input {
+    height: 49px;
+    margin-top: -1px;
+    margin-left: -1px;
+    margin-right: -1px;
+    @apply w-full leading-48 border-0 outline-none rounded-0 text-main px-10 border;
 
-        &:focus,
-        &:hover {
-          z-index: 10;
-          @apply shadow-none border-primary;
-        }
-      }
+    &:focus,
+    &:hover {
+      z-index: 10;
+      @apply shadow-none border-primary;
     }
   }
 }
 
 .static-select {
-  &.col--edit {
-    & > .vxe-cell {
-      width: auto !important;
-      margin-right: -1px;
-      @apply px-0;
+  &.col--edit > .vxe-cell {
+    .ant-select-focused .ant-select-selection {
+      border-right-width: 0 !important;
+      @apply shadow-none;
+    }
 
-      .ant-select-focused .ant-select-selection {
-        border-right-width: 0 !important;
-        @apply shadow-none;
+    & > .ant-select {
+      height: 49px;
+      margin: -1px -1px 0;
+      @apply border w-full outline-none;
+
+      &:focus,
+      &:hover {
+        z-index: 10;
+        @apply border-primary;
       }
 
-      & > .ant-select {
-        height: 49px;
-        margin: -1px -1px 0;
-        @apply border w-full outline-none;
+      & > .ant-select-selection {
+        height: 47px;
+        line-height: 47px;
+        @apply border-0 rounded-0 text-main transition-none;
 
-        &:focus,
-        &:hover {
+        &:active,
+        &:hover,
+        &:focus {
           z-index: 10;
-          @apply border-primary;
+          border-right-width: 0 !important;
+          @apply shadow-none outline-none;
         }
 
-        & > .ant-select-selection {
-          height: 47px;
+        & > .ant-select-selection__rendered {
           line-height: 47px;
-          @apply border-0 rounded-0 text-main transition-none;
-
-          &:active,
-          &:hover,
-          &:focus {
-            z-index: 10;
-            border-right-width: 0 !important;
-            @apply shadow-none outline-none;
-          }
-
-          & > .ant-select-selection__rendered {
-            line-height: 47px;
-            @apply mx-10;
-          }
+          @apply mx-10;
         }
       }
     }
@@ -109,38 +106,32 @@
 }
 
 .region-cascader {
-  &.col--edit {
-    & > .vxe-cell {
-      width: auto !important;
-      margin-right: -1px;
-      @apply px-0;
+  &.col--edit > .vxe-cell {
+    & > .region-cascader {
+      height: 49px;
+      margin: -1px -1px 0;
+      @apply border rounded-0 outline-none w-full;
 
-      & > .region-cascader {
-        height: 49px;
-        margin: -1px -1px 0;
-        @apply border rounded-0 outline-none w-full;
+      &:focus,
+      &:hover {
+        z-index: 10;
+        @apply border-primary;
 
-        &:focus,
-        &:hover {
-          z-index: 10;
-          @apply border-primary;
-
-          & > .ant-cascader-input {
-            @apply shadow-none;
-            border-right-width: 0 !important;
-          }
+        & > .ant-cascader-input {
+          @apply shadow-none;
+          border-right-width: 0 !important;
         }
+      }
 
-        & > input.ant-input {
-          @apply border-0 rounded-0;
+      & > input.ant-input {
+        @apply border-0 rounded-0;
 
-          height: 47px;
-          line-height: 47px;
-        }
+        height: 47px;
+        line-height: 47px;
+      }
 
-        & > .ant-cascader-picker-label {
-          @apply px-10 text-main;
-        }
+      & > .ant-cascader-picker-label {
+        @apply px-10 text-main;
       }
     }
   }
@@ -172,33 +163,27 @@
 }
 
 .string-date-picker {
-  &.col--edit {
-    & > .vxe-cell {
-      width: auto !important;
-      margin-right: -1px;
-      @apply px-0;
+  &.col--edit > .vxe-cell {
+    & > .string-date-picker {
+      height: 49px;
+      margin: -1px -1px 0;
+      @apply border rounded-0 outline-none w-full;
 
-      & > .string-date-picker {
-        height: 49px;
-        margin: -1px -1px 0;
-        @apply border rounded-0 outline-none w-full;
+      &:focus,
+      &:hover {
+        z-index: 10;
+        @apply border-primary;
+      }
+
+      .ant-calendar-picker-input {
+        height: 47px;
+        line-height: 47px;
+        @apply border-0 rounded-0 transition-none text-main;
 
         &:focus,
         &:hover {
-          z-index: 10;
-          @apply border-primary;
-        }
-
-        .ant-calendar-picker-input {
-          height: 47px;
-          line-height: 47px;
-          @apply border-0 rounded-0 transition-none text-main;
-
-          &:focus,
-          &:hover {
-            border-right-width: 0 !important;
-            @apply shadow-none outline-none;
-          }
+          border-right-width: 0 !important;
+          @apply shadow-none outline-none;
         }
       }
     }
