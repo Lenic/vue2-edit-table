@@ -69,6 +69,7 @@ VXETable.renderer.add('static-select', {
 });
 
 VXETable.renderer.add('static-input', {
+  autofocus: '.edit',
   // 默认显示模板
   renderEdit(h, renderOpts, params) {
     let { row, column } = params;
