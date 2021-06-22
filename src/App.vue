@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-primary-light text-28">
+  <div id="app" class="bg-primary-light text-28 bg-opacity-10 p-36">
     <vxe-table
       border
       resizable
@@ -15,8 +15,19 @@
         activeMethod: activeRowMethod,
       }"
     >
-      <vxe-table-column v-if="1 === 2" type="seq" width="60"></vxe-table-column>
-      <vxe-table-column field="name" title="Name" :edit-render="{ name: 'static-input' }"></vxe-table-column>
+      <vxe-table-column type="seq" width="60"></vxe-table-column>
+      <vxe-table-column
+        title="检查"
+        field="failure"
+        :edit-render="{ name: 'error-info' }"
+        :class-name="handleErrorCellClassName"
+      ></vxe-table-column>
+      <vxe-table-column
+        field="name"
+        title="name"
+        class-name="p-content-none border-0!"
+        :edit-render="{ name: 'static-input' }"
+      ></vxe-table-column>
       <vxe-table-column
         field="role"
         title="Role"
@@ -112,7 +123,8 @@ export default {
           date12: '',
           date13: '',
           region: '河北省/石家庄市/藁城区',
-          $meta: { loading: false, saveError: false },
+          failure: '1. 承运人不存在；\n2. 车辆不存在；\n3. 托运方信息不存在',
+          $meta: { loading: false, saveError: false, hasError: true },
         },
         {
           id: 10002,
@@ -127,37 +139,7 @@ export default {
           date12: '',
           date13: '2020-08-20',
           region: '北京市/北京市/朝阳区',
-          $meta: { loading: false, saveError: false },
-        },
-        {
-          id: 10003,
-          name: 'Test3',
-          nickname: 'T3',
-          role: 'Tester',
-          sex: '0',
-          sex2: ['1'],
-          num1: 200,
-          age: 32,
-          address: 'Shanghai',
-          date12: '2020-09-10',
-          date13: '',
-          region: '新疆维吾尔自治区/巴音郭楞蒙古自治州/焉耆回族自治县',
-          $meta: { loading: false, saveError: false },
-        },
-        {
-          id: 10004,
-          name: 'Test4',
-          nickname: 'T4',
-          role: 'Designer',
-          sex: '1',
-          sex2: ['1'],
-          num1: 30,
-          age: 23,
-          address: 'Shenzhen',
-          date12: '',
-          date13: '2020-12-04',
-          region: '海南省/三沙市',
-          $meta: { loading: false, saveError: false },
+          $meta: { loading: false, saveError: false, hasError: false },
         },
         {
           id: 10005,
@@ -172,7 +154,7 @@ export default {
           date12: '2020-09-20',
           date13: '',
           region: '香港特别行政区',
-          $meta: { loading: false, saveError: false },
+          $meta: { loading: false, saveError: false, hasError: false },
         },
         {
           id: 10006,
@@ -187,7 +169,7 @@ export default {
           date12: '',
           date13: '',
           region: '浙江省/杭州市/西湖区',
-          $meta: { loading: false, saveError: false },
+          $meta: { loading: false, saveError: false, hasError: false },
         },
         {
           id: 10007,
@@ -202,7 +184,7 @@ export default {
           date12: '2020-01-02',
           date13: '2020-09-20',
           region: '浙江省/杭州市/临安区',
-          $meta: { loading: false, saveError: false },
+          $meta: { loading: false, saveError: false, hasError: false },
         },
         {
           id: 10008,
@@ -217,7 +199,7 @@ export default {
           date12: '',
           date13: '',
           region: '河北省/石家庄市/无极县',
-          $meta: { loading: false, saveError: false },
+          $meta: { loading: false, saveError: false, hasError: false },
         },
       ],
       sexList: [
@@ -276,6 +258,13 @@ export default {
         return false;
       }
       return true;
+    },
+    handleErrorCellClassName({ row }) {
+      if (row.failure && row.$meta.hasError) {
+        return 'bg-danger bg-opacity-10 text-danger error-info';
+      }
+
+      return 'text-danger error-info';
     },
   },
 };

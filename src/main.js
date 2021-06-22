@@ -76,7 +76,7 @@ VXETable.renderer.add('static-input', {
 
     return [
       h(Input, {
-        class: 'w-full',
+        class: 'edit',
         props: { ...props, value: row[column.property] },
         on: {
           change: (v) => {
@@ -88,7 +88,16 @@ VXETable.renderer.add('static-input', {
     ];
   },
   renderCell(h, renderOpts, { row, column }) {
-    return [h('span', { class: 'text-warning text-opacity-70' }, row[column.property])];
+    return [h('span', { class: 'text-main px-10' }, row[column.property])];
+  },
+});
+
+VXETable.renderer.add('error-info', {
+  renderEdit(h, renderOpts, { row, column }) {
+    return [h('span', { class: 'cursor-default' }, row[column.property])];
+  },
+  renderCell(h, renderOpts, { row, column }) {
+    return [h('span', { class: 'cursor-default' }, row[column.property])];
   },
 });
 
