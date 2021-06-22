@@ -74,7 +74,7 @@
         & > .ant-select-selection {
           height: 47px;
           line-height: 47px;
-          @apply border-0 rounded-0 text-main;
+          @apply border-0 rounded-0 text-main transition-none;
 
           &:active,
           &:hover,
