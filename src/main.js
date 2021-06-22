@@ -69,7 +69,7 @@ VXETable.renderer.add('static-select', {
 });
 
 VXETable.renderer.add('static-input', {
-  autofocus: '.edit',
+  autofocus: '.static-input',
   // 默认显示模板
   renderEdit(h, renderOpts, params) {
     let { row, column } = params;
@@ -77,7 +77,7 @@ VXETable.renderer.add('static-input', {
 
     return [
       h(Input, {
-        class: 'edit',
+        class: 'static-input',
         props: { ...props, value: row[column.property] },
         on: {
           change: (v) => {
