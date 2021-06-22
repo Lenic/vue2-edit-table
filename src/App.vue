@@ -37,6 +37,14 @@
           props: { options: roleList },
         }"
       ></vxe-table-column>
+      <vxe-table-column
+        field="region"
+        title="行政区划"
+        class-name="region-cascader"
+        :edit-render="{
+          name: 'region-cascader',
+        }"
+      ></vxe-table-column>
       <vxe-table-column field="sex" title="Sex" :edit-render="{ name: '$select', options: sexList }"></vxe-table-column>
       <vxe-table-column
         field="sex2"
@@ -66,12 +74,6 @@
         :edit-render="{
           name: '$input',
           props: { type: 'week', placeholder: '请选择日期' },
-        }"
-      ></vxe-table-column>
-      <vxe-table-column
-        field="region"
-        :edit-render="{
-          name: 'region',
         }"
       ></vxe-table-column>
       <vxe-table-column field="address" title="Address" :edit-render="{ name: 'textarea' }"></vxe-table-column>

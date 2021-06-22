@@ -20,7 +20,7 @@ Vue.use(VXETable);
 
 Vue.config.productionTip = false;
 
-VXETable.renderer.add('region', {
+VXETable.renderer.add('region-cascader', {
   // 默认显示模板
   renderEdit(h, renderOpts, params) {
     let { row, column } = params;
@@ -28,7 +28,7 @@ VXETable.renderer.add('region', {
 
     return [
       h(Region, {
-        class: 'w-full',
+        class: 'w-full region-cascader',
         props: { ...props, value: row[column.property] },
         on: {
           change: (v) => {
@@ -40,7 +40,7 @@ VXETable.renderer.add('region', {
     ];
   },
   renderCell(h, renderOpts, { row, column }) {
-    return [h('span', { class: 'abc' }, row[column.property])];
+    return [h('span', { class: 'text-main px-10' }, row[column.property])];
   },
 });
 

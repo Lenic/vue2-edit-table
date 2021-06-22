@@ -63,6 +63,7 @@ input.edit {
 
         &:focus,
         &:hover {
+          z-index: 10;
           @apply border-primary;
         }
 
@@ -97,6 +98,68 @@ input.edit {
 
         &.ant-select-dropdown-menu-item-selected {
           @apply text-primary bg-primary bg-opacity-10 font-normal;
+        }
+      }
+    }
+  }
+}
+
+.region-cascader {
+  &.col--edit {
+    & > .vxe-cell {
+      width: auto !important;
+      margin-right: -1px;
+      @apply px-0;
+
+      & > .region-cascader {
+        height: 49px;
+        margin: -1px -1px 0;
+        @apply border rounded-0 outline-none;
+
+        &:focus,
+        &:hover {
+          @apply border-primary;
+
+          & > .ant-cascader-input {
+            @apply shadow-none;
+            border-right-width: 0 !important;
+          }
+        }
+
+        & > input.ant-input {
+          @apply border-0 rounded-0;
+
+          height: 47px;
+          line-height: 47px;
+        }
+
+        & > .ant-cascader-picker-label {
+          @apply px-10 text-main;
+        }
+      }
+    }
+  }
+
+  &.vxe-table--ignore-clear {
+    @apply rounded-0;
+
+    & > .ant-cascader-menus-content {
+      @apply rounded-0;
+
+      & > .ant-cascader-menu {
+        @apply p-0;
+
+        &:first-child,
+        &:last-child {
+          @apply rounded-0;
+        }
+
+        & > .ant-cascader-menu-item {
+          @apply h-46 leading-46 py-0 px-16 text-14 font-normal text-main hover:text-primary hover:bg-white;
+
+          &.ant-cascader-menu-item-active {
+            @apply text-primary bg-primary bg-opacity-10;
+          }
         }
       }
     }

@@ -8,7 +8,7 @@
     }"
     :value="values"
     placeholder="Please select"
-    popupClassName="vxe-table--ignore-clear"
+    popupClassName="vxe-table--ignore-clear region-cascader"
     @change="handleChanged"
   />
 </template>
