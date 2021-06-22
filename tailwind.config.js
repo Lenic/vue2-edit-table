@@ -54,7 +54,7 @@ module.exports = {
         colors: {
           main: '#101217',
           secondary: '#515151',
-          muted: '#bfbfbf',
+          muted: '#535557',
           note: '#bfbfbf',
 
           black: '#000',
@@ -104,7 +104,8 @@ module.exports = {
         light: colorVariable('var(--colors-danger-light)'),
       },
     },
-    borderColor: (theme) => Object.assign(theme('colors'), { DEFAULT: 'var(--colors-border)' }),
+    borderColor: (theme) =>
+      Object.assign(theme('colors'), { DEFAULT: 'var(--colors-border)', grey: 'var(--colors-border)' }),
     borderRadius: Object.assign(pxAction(0, 2, 8), { DEFAULT: '4px', full: '9999px' }),
     borderWidth: { DEFAULT: '1px', 0: '0px' },
     boxShadow: Object.assign(boxShadow(0, 1, 24), { none: 'none' }),

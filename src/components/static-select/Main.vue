@@ -1,5 +1,10 @@
 <template>
-  <Select :value="current" @change="handleChange" dropdownClassName="vxe-table--ignore-clear" v-bind="$attrs">
+  <Select
+    :value="current"
+    @change="handleChange"
+    dropdownClassName="static-select vxe-table--ignore-clear rounded-0"
+    v-bind="$attrs"
+  >
     <slot :list="options">
       <Option :key="item.value" :value="item.value" v-for="item in options">{{ item.label }}</Option>
     </slot>

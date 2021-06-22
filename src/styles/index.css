@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.vxe-cell {
-  width: 100% !important;
-}
-
 .error-info > .vxe-cell {
   @apply truncate;
 }
@@ -46,4 +42,63 @@ input.edit {
 .vxe-table--render-default.border--full .vxe-body--column {
   background-image: linear-gradient(var(--colors-border), var(--colors-border)),
     Linear-gradient(var(--colors-border), var(--colors-border));
+}
+
+.static-select {
+  &.col--edit {
+    & > .vxe-cell {
+      width: auto !important;
+      margin-right: -1px;
+      @apply px-0;
+
+      .ant-select-focused .ant-select-selection {
+        border-right-width: 0 !important;
+        @apply shadow-none;
+      }
+
+      & > .ant-select {
+        height: 49px;
+        margin: -1px -1px 0;
+        @apply border;
+
+        &:focus,
+        &:hover {
+          @apply border-primary;
+        }
+
+        & > .ant-select-selection {
+          height: 47px;
+          line-height: 47px;
+          @apply border-0 rounded-0;
+
+          &:active,
+          &:hover,
+          &:focus {
+            z-index: 10;
+            border-right-width: 0 !important;
+            @apply shadow-none outline-none;
+          }
+
+          & > .ant-select-selection__rendered {
+            line-height: 47px;
+            @apply mx-10;
+          }
+        }
+      }
+    }
+  }
+
+  &.vxe-table--ignore-clear {
+    & > .ant-select-dropdown-content > .ant-select-dropdown-menu-root {
+      @apply text-main leading-46 text-14 p-0 divide-grey divide-y;
+
+      & > .ant-select-dropdown-menu-item {
+        @apply h-46 px-16 py-0 leading-46 hover:text-primary hover:bg-white;
+
+        &.ant-select-dropdown-menu-item-selected {
+          @apply text-primary bg-primary bg-opacity-10 font-normal;
+        }
+      }
+    }
+  }
 }

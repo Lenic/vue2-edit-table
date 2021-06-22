@@ -31,6 +31,7 @@
       <vxe-table-column
         field="role"
         title="Role"
+        class-name="static-select"
         :edit-render="{
           name: 'static-select',
           props: { options: roleList },

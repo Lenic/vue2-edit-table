@@ -52,7 +52,7 @@ VXETable.renderer.add('static-select', {
 
     return [
       h(StaticSelect, {
-        class: 'w-full',
+        class: 'w-full outline-none',
         props: { ...props, value: row[column.property] },
         on: {
           change: (v) => {
@@ -64,7 +64,7 @@ VXETable.renderer.add('static-select', {
     ];
   },
   renderCell(h, renderOpts, { row, column }) {
-    return [h('span', { class: 'abc' }, row[column.property])];
+    return [h('span', { class: 'text-main px-10' }, row[column.property])];
   },
 });
 
