@@ -215,6 +215,18 @@
   }
 }
 
+.static-input.error-rect .ant-input.static-input,
+.static-select.error-rect .ant-select.static-select,
+.region-cascader.error-rect .ant-cascader-picker.region-cascader,
+.string-date-picker.error-rect .ant-calendar-picker.string-date-picker {
+  @apply border-danger;
+
+  &:focus,
+  &:hover {
+    @apply border-danger;
+  }
+}
+
 .static-input,
 .static-select,
 .region-cascader,

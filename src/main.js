@@ -77,7 +77,7 @@ VXETable.renderer.add('static-select', {
 
     return [
       h(StaticSelect, {
-        class: 'w-full outline-none',
+        class: 'w-full outline-none static-select',
         props: { ...props, value: row[column.property] },
         on: {
           change: (v) => {
