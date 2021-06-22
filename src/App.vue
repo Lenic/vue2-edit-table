@@ -31,7 +31,7 @@
       <vxe-table-column
         field="role"
         title="Role"
-        class-name="static-select"
+        :class-name="handleSelectCellClassName"
         :edit-render="{
           name: 'static-select',
           props: { options: roleList },
@@ -272,7 +272,12 @@ export default {
     handleInputCellClassName({ row, column }) {
       const hasError = row.$meta.errors ? row.$meta.errors[column.property] : false;
 
-      return hasError ? 'static-input has-error' : 'static-input';
+      return hasError ? 'static-input error-rect' : 'static-input';
+    },
+    handleSelectCellClassName({ row, column }) {
+      const hasError = row.$meta.errors ? row.$meta.errors[column.property] : false;
+
+      return hasError ? 'static-select error-rect' : 'static-select';
     },
   },
 };
