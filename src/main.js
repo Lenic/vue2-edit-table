@@ -33,7 +33,7 @@ VXETable.renderer.add('region-cascader', {
 
     return [
       h(Region, {
-        class: 'w-full region-cascader',
+        class: 'region-cascader',
         props: { ...props, value: row[column.property] },
         on: {
           change: (v) => {
@@ -55,7 +55,7 @@ VXETable.renderer.add('string-date-picker', {
 
     return [
       h(StringDatePicker, {
-        class: 'w-full string-date-picker',
+        class: 'string-date-picker',
         props: { ...props, value: row[column.property] },
         on: {
           change: (v) => {
@@ -77,7 +77,7 @@ VXETable.renderer.add('static-select', {
 
     return [
       h(StaticSelect, {
-        class: 'w-full outline-none static-select',
+        class: 'static-select',
         props: { ...props, value: row[column.property] },
         on: {
           change: (v) => {

@@ -63,7 +63,7 @@
       & > .ant-select {
         height: 49px;
         margin: -1px -1px 0;
-        @apply border;
+        @apply border w-full outline-none;
 
         &:focus,
         &:hover {
@@ -118,7 +118,7 @@
       & > .region-cascader {
         height: 49px;
         margin: -1px -1px 0;
-        @apply border rounded-0 outline-none;
+        @apply border rounded-0 outline-none w-full;
 
         &:focus,
         &:hover {
@@ -181,7 +181,7 @@
       & > .string-date-picker {
         height: 49px;
         margin: -1px -1px 0;
-        @apply border rounded-0 outline-none;
+        @apply border rounded-0 outline-none w-full;
 
         &:focus,
         &:hover {
@@ -192,7 +192,7 @@
         .ant-calendar-picker-input {
           height: 47px;
           line-height: 47px;
-          @apply border-0 rounded-0 transition-none;
+          @apply border-0 rounded-0 transition-none text-main;
 
           &:focus,
           &:hover {
