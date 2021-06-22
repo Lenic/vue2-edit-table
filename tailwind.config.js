@@ -88,19 +88,19 @@ module.exports = {
       white: colorVariable('var(--colors-white)'),
 
       primary: {
-        DEFAULT: colorVariable('--colors-primary-default'),
+        DEFAULT: colorVariable('--colors-primary'),
         light: colorVariable('var(--colors-primary-light)'),
       },
       success: {
-        DEFAULT: colorVariable('var(--colors-success-default)'),
+        DEFAULT: colorVariable('var(--colors-success)'),
         light: colorVariable('var(--colors-success-light)'),
       },
       warning: {
-        DEFAULT: colorVariable('var(--colors-warning-default)'),
+        DEFAULT: colorVariable('var(--colors-warning)'),
         light: colorVariable('var(--colors-warning-light)'),
       },
       danger: {
-        DEFAULT: colorVariable('var(--colors-danger-default)'),
+        DEFAULT: colorVariable('var(--colors-danger)'),
         light: colorVariable('var(--colors-danger-light)'),
       },
     },
