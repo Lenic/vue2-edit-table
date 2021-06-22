@@ -25,7 +25,7 @@
       <vxe-table-column
         field="name"
         title="name"
-        class-name="static-input"
+        :class-name="handleInputCellClassName"
         :edit-render="{ name: 'static-input' }"
       ></vxe-table-column>
       <vxe-table-column
@@ -127,7 +127,7 @@ export default {
           date13: '',
           region: '河北省/石家庄市/藁城区',
           failure: '1. 承运人不存在；\n2. 车辆不存在；\n3. 托运方信息不存在',
-          $meta: { loading: false, saveError: false, hasError: true },
+          $meta: { loading: false, saveError: false, hasError: true, errors: { name: true, role: true, region: true } },
         },
         {
           id: 10002,
@@ -268,6 +268,11 @@ export default {
       }
 
       return 'text-danger error-info';
+    },
+    handleInputCellClassName({ row, column }) {
+      const hasError = row.$meta.errors ? row.$meta.errors[column.property] : false;
+
+      return hasError ? 'static-input has-error' : 'static-input';
     },
   },
 };
