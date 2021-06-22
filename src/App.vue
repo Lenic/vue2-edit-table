@@ -15,7 +15,7 @@
         activeMethod: activeRowMethod,
       }"
     >
-      <vxe-table-column type="seq" width="60"></vxe-table-column>
+      <vxe-table-column type="seq" width="60" />
       <vxe-table-column
         title="检查"
         field="failure"
@@ -51,7 +51,7 @@
         :class-name="handleDatePickerCellClassName"
         :edit-render="{ name: 'string-date-picker' }"
       />
-      <vxe-table-column field="sex" title="Sex" :edit-render="{ name: '$select', options: sexList }"></vxe-table-column>
+      <vxe-table-column field="sex" title="Sex" :edit-render="{ name: '$select', options: sexList }" />
       <vxe-table-column
         field="sex2"
         title="多选下拉"
@@ -60,7 +60,7 @@
           options: sexList,
           props: { multiple: true },
         }"
-      ></vxe-table-column>
+      />
       <vxe-table-column
         field="num6"
         title="Number"
@@ -68,7 +68,7 @@
           name: '$input',
           props: { type: 'number', placeholder: '请输入数值' },
         }"
-      ></vxe-table-column>
+      />
       <vxe-table-column
         field="date13"
         title="Week"
@@ -76,8 +76,8 @@
           name: '$input',
           props: { type: 'week', placeholder: '请选择日期' },
         }"
-      ></vxe-table-column>
-      <vxe-table-column field="address" title="Address" :edit-render="{ name: 'textarea' }"></vxe-table-column>
+      />
+      <vxe-table-column field="address" title="Address" :edit-render="{ name: 'textarea' }" />
       <vxe-table-column title="操作" width="160">
         <template #default="{ row }">
           <div class="space-x-12">
