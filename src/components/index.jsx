@@ -1,9 +1,9 @@
 import VXETable from 'vxe-table';
 import { Input } from 'ant-design-vue';
 
-import { Region } from './components/region-cascader';
-import { StaticSelect } from './components/static-select';
-import { StringDatePicker } from './components/string-date-picker';
+import { Region } from './region-cascader';
+import { StaticSelect } from './static-select';
+import { StringDatePicker } from './string-date-picker';
 
 const defaultRenderCell = (h, _, { row, column }) => [<span class="text-main px-10">{row[column.property]}</span>];
 

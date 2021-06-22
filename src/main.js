@@ -4,7 +4,7 @@ import VXETable from 'vxe-table';
 import CompositionApi from '@vue/composition-api';
 
 import App from './App.vue';
-import { install } from './install';
+import { install } from './components';
 
 import 'vxe-table/lib/style.css';
 import 'ant-design-vue/dist/antd.css';
