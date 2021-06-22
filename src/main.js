@@ -7,6 +7,7 @@ import App from './App.vue';
 import { Input } from 'ant-design-vue';
 import { Region } from './components/region-cascader';
 import { StaticSelect } from './components/static-select';
+import { StringDatePicker } from './components/string-date-picker';
 
 import 'vxe-table/lib/style.css';
 import 'ant-design-vue/dist/antd.css';
@@ -33,6 +34,30 @@ VXETable.renderer.add('region-cascader', {
         on: {
           change: (v) => {
             console.log('region.changed', v);
+            row[column.property] = v;
+          },
+        },
+      }),
+    ];
+  },
+  renderCell(h, renderOpts, { row, column }) {
+    return [h('span', { class: 'text-main px-10' }, row[column.property])];
+  },
+});
+
+VXETable.renderer.add('string-date-picker', {
+  // 默认显示模板
+  renderEdit(h, renderOpts, params) {
+    let { row, column } = params;
+    let { props } = renderOpts;
+
+    return [
+      h(StringDatePicker, {
+        class: 'w-full',
+        props: { ...props, value: row[column.property] },
+        on: {
+          change: (v) => {
+            console.log('string-date-picker.changed', v);
             row[column.property] = v;
           },
         },

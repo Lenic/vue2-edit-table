@@ -66,8 +66,9 @@
       <vxe-table-column
         field="date12"
         title="Date"
-        :edit-render="{ name: '$input', props: { type: 'date' } }"
-      ></vxe-table-column>
+        class-name="string-date-picker"
+        :edit-render="{ name: 'string-date-picker' }"
+      />
       <vxe-table-column
         field="date13"
         title="Week"
