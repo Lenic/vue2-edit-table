@@ -40,7 +40,7 @@
       <vxe-table-column
         field="region"
         title="行政区划"
-        class-name="region-cascader"
+        :class-name="handleCascaderCellClassName"
         :edit-render="{
           name: 'region-cascader',
         }"
@@ -278,6 +278,11 @@ export default {
       const hasError = row.$meta.errors ? row.$meta.errors[column.property] : false;
 
       return hasError ? 'static-select error-rect' : 'static-select';
+    },
+    handleCascaderCellClassName({ row, column }) {
+      const hasError = row.$meta.errors ? row.$meta.errors[column.property] : false;
+
+      return hasError ? 'region-cascader error-rect' : 'region-cascader';
     },
   },
 };
