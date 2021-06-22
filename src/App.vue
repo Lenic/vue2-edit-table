@@ -21,13 +21,13 @@
         field="failure"
         :edit-render="{ name: 'error-info' }"
         :class-name="handleErrorCellClassName"
-      ></vxe-table-column>
+      />
       <vxe-table-column
         field="name"
         title="name"
         :class-name="handleInputCellClassName"
         :edit-render="{ name: 'static-input' }"
-      ></vxe-table-column>
+      />
       <vxe-table-column
         field="role"
         title="Role"
@@ -36,7 +36,7 @@
           name: 'static-select',
           props: { options: roleList },
         }"
-      ></vxe-table-column>
+      />
       <vxe-table-column
         field="region"
         title="行政区划"
@@ -44,7 +44,13 @@
         :edit-render="{
           name: 'region-cascader',
         }"
-      ></vxe-table-column>
+      />
+      <vxe-table-column
+        field="date12"
+        title="Date"
+        :class-name="handleDatePickerCellClassName"
+        :edit-render="{ name: 'string-date-picker' }"
+      />
       <vxe-table-column field="sex" title="Sex" :edit-render="{ name: '$select', options: sexList }"></vxe-table-column>
       <vxe-table-column
         field="sex2"
@@ -63,12 +69,6 @@
           props: { type: 'number', placeholder: '请输入数值' },
         }"
       ></vxe-table-column>
-      <vxe-table-column
-        field="date12"
-        title="Date"
-        class-name="string-date-picker"
-        :edit-render="{ name: 'string-date-picker' }"
-      />
       <vxe-table-column
         field="date13"
         title="Week"
@@ -128,7 +128,12 @@ export default {
           date13: '',
           region: '河北省/石家庄市/藁城区',
           failure: '1. 承运人不存在；\n2. 车辆不存在；\n3. 托运方信息不存在',
-          $meta: { loading: false, saveError: false, hasError: true, errors: { name: true, role: true, region: true } },
+          $meta: {
+            loading: false,
+            saveError: false,
+            hasError: true,
+            errors: { name: true, role: true, region: true, date12: true },
+          },
         },
         {
           id: 10002,
@@ -284,6 +289,11 @@ export default {
       const hasError = row.$meta.errors ? row.$meta.errors[column.property] : false;
 
       return hasError ? 'region-cascader error-rect' : 'region-cascader';
+    },
+    handleDatePickerCellClassName({ row, column }) {
+      const hasError = row.$meta.errors ? row.$meta.errors[column.property] : false;
+
+      return hasError ? 'string-date-picker error-rect' : 'string-date-picker';
     },
   },
 };

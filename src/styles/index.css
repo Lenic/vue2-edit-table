@@ -215,7 +215,8 @@
 
 .static-input,
 .static-select,
-.region-cascader {
+.region-cascader,
+.string-date-picker {
   &.col--edit.error-rect:not(.col--actived) {
     &::before {
       right: 0;
