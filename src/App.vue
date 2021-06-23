@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="bg-primary-light text-28 bg-opacity-10 p-36 min-h-screen">
-    <vxe-table
+    <vxe-grid
       border
       resizable
       show-overflow
@@ -14,90 +14,8 @@
         mode: 'row',
         activeMethod: activeRowMethod,
       }"
-    >
-      <vxe-table-column type="seq" width="60" />
-      <vxe-table-column
-        title="检查"
-        field="failure"
-        :edit-render="{ name: 'error-info' }"
-        :class-name="handleErrorCellClassName"
-      />
-      <vxe-table-column
-        field="name"
-        title="name"
-        :class-name="handleInputCellClassName"
-        :edit-render="{ name: 'static-input' }"
-      />
-      <vxe-table-column
-        field="role"
-        title="Role"
-        :class-name="handleSelectCellClassName"
-        :edit-render="{
-          name: 'static-select',
-          props: { options: dataSource.roleList },
-        }"
-      />
-      <vxe-table-column
-        field="region"
-        title="行政区划"
-        :class-name="handleCascaderCellClassName"
-        :edit-render="{
-          name: 'region-cascader',
-        }"
-      />
-      <vxe-table-column
-        field="date12"
-        title="Date"
-        :class-name="handleDatePickerCellClassName"
-        :edit-render="{ name: 'string-date-picker' }"
-      />
-      <vxe-table-column field="sex" title="Sex" :edit-render="{ name: '$select', options: dataSource.sexList }" />
-      <vxe-table-column
-        field="sex2"
-        title="多选下拉"
-        :edit-render="{
-          name: '$select',
-          options: dataSource.sexList,
-          props: { multiple: true },
-        }"
-      />
-      <vxe-table-column
-        field="num6"
-        title="Number"
-        :edit-render="{
-          name: '$input',
-          props: { type: 'number', placeholder: '请输入数值' },
-        }"
-      />
-      <vxe-table-column
-        field="date13"
-        title="Week"
-        :edit-render="{
-          name: '$input',
-          props: { type: 'week', placeholder: '请选择日期' },
-        }"
-      />
-      <vxe-table-column field="address" title="Address" :edit-render="{ name: 'textarea' }" />
-      <vxe-table-column title="操作" width="160">
-        <template #default="{ row }">
-          <div class="space-x-12">
-            <span
-              v-if="row.$meta.loading"
-              class="bg-warning bg-opacity-30 text-left px-10 py-4 rounded inline-block hover:bg-opacity-70 select-none"
-            >
-              Saving...
-            </span>
-            <div
-              v-if="row.$meta.saveError"
-              @click="handleUpdateRow(row)"
-              class="bg-danger bg-opacity-30 px-10 py-4 rounded hover:bg-opacity-70 cursor-pointer inline-block"
-            >
-              Save
-            </div>
-          </div>
-        </template>
-      </vxe-table-column>
-    </vxe-table>
+      :columns="columns"
+    />
   </div>
 </template>
 
@@ -297,16 +215,105 @@ export default defineComponent({
       return hasError ? 'string-date-picker error-rect' : 'string-date-picker';
     };
 
+    const columns = [
+      { type: 'seq', width: 60 },
+      { title: '检查', field: 'failure', editRender: { name: 'error-info' }, className: handleErrorCellClassName },
+      { field: 'name', title: 'name', className: handleInputCellClassName, editRender: { name: 'static-input' } },
+      {
+        field: 'role',
+        title: 'Role',
+        className: handleSelectCellClassName,
+        editRender: {
+          name: 'static-select',
+          props: { options: dataSource.roleList },
+        },
+      },
+      {
+        field: 'region',
+        title: '行政区划',
+        className: handleCascaderCellClassName,
+        editRender: { name: 'region-cascader' },
+      },
+      {
+        field: 'sex2',
+        title: '多选下拉',
+        editRender: {
+          name: '$select',
+          options: dataSource.sexList,
+          props: { multiple: true },
+        },
+      },
+      {
+        field: 'num6',
+        title: 'Number',
+        editRender: {
+          name: '$input',
+          props: { type: 'number', placeholder: '请输入数值' },
+        },
+      },
+      {
+        field: 'date13',
+        title: 'Week',
+        editRender: {
+          name: '$input',
+          props: { type: 'week', placeholder: '请选择日期' },
+        },
+      },
+      {
+        field: 'date12',
+        title: 'Date',
+        className: handleDatePickerCellClassName,
+        editRender: { name: 'string-date-picker' },
+      },
+      { field: 'address', title: 'Address', editRender: { name: 'textarea' } },
+      {
+        title: '操作',
+        width: '160',
+        slots: {
+          default: ({ row }, h) => {
+            return [
+              h(
+                'div',
+                {
+                  class: 'space-x-12',
+                },
+                [
+                  !row.$meta.loading
+                    ? null
+                    : h(
+                        'span',
+                        {
+                          class:
+                            'bg-warning bg-opacity-30 text-left px-10 py-4 rounded inline-block hover:bg-opacity-70 select-none',
+                        },
+                        ['Saving...']
+                      ),
+                  !row.$meta.saveError
+                    ? null
+                    : h(
+                        'div',
+                        {
+                          on: { click: () => handleUpdateRow(row) },
+                          class:
+                            'bg-danger bg-opacity-30 px-10 py-4 rounded hover:bg-opacity-70 cursor-pointer inline-block',
+                        },
+                        ['Save']
+                      ),
+                ]
+              ),
+            ];
+          },
+        },
+      },
+    ];
+
     return {
+      columns,
       dataSource,
 
       saveRowEvent,
       handleUpdateRow,
       activeRowMethod,
-      handleErrorCellClassName,
-      handleInputCellClassName,
-      handleSelectCellClassName,
-      handleCascaderCellClassName,
       handleDatePickerCellClassName,
     };
   },
